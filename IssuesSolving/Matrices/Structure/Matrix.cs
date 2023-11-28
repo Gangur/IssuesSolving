@@ -1,4 +1,6 @@
-﻿namespace IssuesSolving.Matrices.Structure
+﻿using System.Text;
+
+namespace IssuesSolving.Matrices.Structure
 {
     public static class Matrix
     {
@@ -22,6 +24,34 @@
                 new int[] { 0, 0, 1, 0, 0 },
                 new int[] { 0, 0, 0, 0, 0 },
             };
+        }
+
+        public static void Print(this int[][] matrix)
+        {
+            Console.WriteLine();
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                Console.WriteLine("[ " + string.Join(' ', matrix[i])+ " ]");
+            }
+            Console.WriteLine();
+        }
+
+        public static void Print(this int[,] matrix)
+        {
+            Console.WriteLine();
+            StringBuilder stringBuilder;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                stringBuilder = new StringBuilder("[ ");
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    stringBuilder.Append(matrix[i, j]);
+                    stringBuilder.Append(' ');
+                }
+                stringBuilder.Append("]");
+                Console.WriteLine(stringBuilder.ToString());
+            }
+            Console.WriteLine();
         }
     }
 }

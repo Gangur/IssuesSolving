@@ -38,6 +38,12 @@ namespace IssuesSolving.Matrices.Structure
 
         public static void Print(this int[,] matrix)
         {
+            int maxPlace = 0;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                    maxPlace = Math.Max(maxPlace, findPlaceofNumber(matrix[i, j]));
+
             Console.WriteLine();
             StringBuilder stringBuilder;
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -45,12 +51,63 @@ namespace IssuesSolving.Matrices.Structure
                 stringBuilder = new StringBuilder("[ ");
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
+                    int localPlace = findPlaceofNumber(matrix[i, j]);
+
                     stringBuilder.Append(matrix[i, j]);
+                    while (maxPlace > localPlace)
+                    {
+                        stringBuilder.Append(' ');
+                        localPlace++;
+                    }
                     stringBuilder.Append(' ');
                 }
                 stringBuilder.Append("]");
+
                 Console.WriteLine(stringBuilder.ToString());
             }
+
+            Console.WriteLine();
+        }
+
+        private static int findPlaceofNumber(int n)
+        {
+            if (n == 0)
+                return 1;
+
+            int result = 0;
+            while (n > 0)
+            {
+                n /= 10;
+                result++;
+            }
+
+            return result;
+        }
+
+        public static void Print<T>(this T[] arr) where T : struct
+        {
+            Console.WriteLine();
+            Console.WriteLine("[ " + string.Join(" ", arr) + " ]");
+            Console.WriteLine();
+        }
+
+        public static void Print(this bool[,] matrix)
+        {
+            Console.WriteLine();
+            StringBuilder stringBuilder;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                stringBuilder = new StringBuilder("[ ");
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    stringBuilder.Append(matrix[i, j] ? '1' : '0');
+                    stringBuilder.Append(' ');
+                }
+                stringBuilder.Append("]");
+
+                Console.WriteLine(stringBuilder.ToString());
+            }
+
             Console.WriteLine();
         }
     }

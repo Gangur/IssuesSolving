@@ -1,4 +1,7 @@
-﻿using IssuesSolving.Array;
+﻿using BenchmarkDotNet.Running;
+using IssuesSolving;
+using IssuesSolving.Array;
+using IssuesSolving.DynamicProgramming;
 using IssuesSolving.Graphs;
 using IssuesSolving.Graphs.Structure;
 using IssuesSolving.LinkedLists;
@@ -11,9 +14,14 @@ using IssuesSolving.Trees;
 using IssuesSolving.Trees.Structure;
 using System.Linq;
 
-Console.WriteLine("Coding problems solving");
+public static class Program { 
+    public static void Main(string[] args)
+    {
+        Console.WriteLine(MatrixChainProblem.FindMinCostTabulation(new int[,]
+        {
+            { 40, 20 }, { 20, 30 }, { 30, 10 }, { 10, 30 }, { 30, 50 }
+        }));
 
-var tree = Tree.CreateBinaryTree();
-var result = CoinChange46.FindMidDp(15, new int[] { 2, 3, 7 });
-
-Console.WriteLine(result);
+        //var summary = BenchmarkRunner.Run<Benchmark>();
+    }
+}

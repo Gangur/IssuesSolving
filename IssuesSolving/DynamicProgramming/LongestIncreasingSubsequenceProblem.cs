@@ -6,7 +6,7 @@
         public static int FindTabulation(int[] arr)
         {
             int n = arr.Length;
-            int[] dpMap = new int[n];
+            Span<int> dpMap = stackalloc int[n];
             dpMap[0] = 1;
 
             for (int i = 1; i < n; i++)
@@ -20,7 +20,7 @@
                 dpMap[i] = 1 + maxlen;
             }
            
-            return dpMap.Max();
+            return dpMap.ToArray().Max();
         }
 
         public static int FindMemoization(int[] arr)

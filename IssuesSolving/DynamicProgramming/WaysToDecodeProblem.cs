@@ -17,7 +17,8 @@ namespace IssuesSolving.DynamicProgramming
         public static int FindWaysTabulation(string s)
         {
             int n = s.Length;
-            var dpMap = new int[n];
+            Span<int> dpMap = stackalloc int[n];
+
             if (s[0] == '0')
                 return 0;
             else if (s.Length == 1)

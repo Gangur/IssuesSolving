@@ -4,7 +4,7 @@
     {
         public static int[] CalculateBruteForce(int[] arr) // O(n²)
         {
-            int[] result = new int[arr.Length];
+            Span<int> result = stackalloc int[arr.Length];
             int product;
             for (int i = 0; i < arr.Length; i++)
             {
@@ -15,15 +15,15 @@
                 result[i] = product;
             }
 
-            return result;
+            return result.ToArray();
         }
 
         public static int[] CalculateWithCumulativeArr(int[] arr) // O(n)
         {
             int n = arr.Length;
-            int[] result = new int[n],
-                cumulativeLeft = new int[n],
-                cumulativeRigth = new int[n];
+            Span<int> result = stackalloc int[n],
+                cumulativeLeft = stackalloc int[n],
+                cumulativeRigth = stackalloc int[n];
 
             int i = 1;
             cumulativeLeft[0] = 1;
@@ -38,7 +38,8 @@
             i++;
             for (; i < n; i++)
                 result[i] = cumulativeLeft[i] * cumulativeRigth[i];
-            return result;
+
+            return result.ToArray();
         }
     }
 }

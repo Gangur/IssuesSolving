@@ -35,7 +35,7 @@ namespace IssuesSolving.DynamicProgramming
 
         public static int FindTabulation(int[] train_days, int[] costs, int n)
         {
-            int[] daysForCosts = new int[] { 1, 7, 30 };
+            Span<int> daysForCosts = stackalloc int[] { 1, 7, 30 };
 
             Span<int> dpMapSpan = stackalloc int[n];
 

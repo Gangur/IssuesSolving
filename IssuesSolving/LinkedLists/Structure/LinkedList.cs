@@ -8,10 +8,25 @@ namespace IssuesSolving.LinkedLists.Structure
         public LinkedList() { head = null; }
         public LinkedList(Node head) { this.head = head; }
 
-        public static LinkedList Create() 
-        { 
-            return new LinkedList(new Node(4, new Node(8, new Node(1, new Node(6, new Node(2, new Node(5))))))); 
+        public LinkedList(int[] arr)
+        {
+            if (arr.Length != 0)
+            {
+                Node node = new Node(arr[0]);
+                head = node;
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    node.next = new Node(arr[i]);
+                    node = node.next;
+                }
+            }
         }
+
+        public static LinkedList Create() 
+            => new LinkedList(new Node(4, new Node(8, new Node(1, new Node(6, new Node(2, new Node(5)))))));
+
+        public static LinkedList CreatePalindrome()
+            => new LinkedList(new Node(1, new Node(4, new Node(6, new Node(5, new Node(6, new Node(4, new Node(1))))))));
 
         public void Print()
         {

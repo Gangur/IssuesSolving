@@ -16,7 +16,7 @@ namespace IssuesSolving.DynamicProgramming
             else if (n < 3)
                 return Math.Max(houses[0], houses[1]);
 
-            var dpMap = new int[n];
+            Span<int> dpMap = stackalloc int[n];
 
             dpMap[0] = houses[0];
             dpMap[1] = Math.Max(houses[0], houses[1]);

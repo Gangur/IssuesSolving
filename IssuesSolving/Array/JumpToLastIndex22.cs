@@ -39,7 +39,7 @@
 
         public static bool CanJumpMyDp(int[] arr) // O(n)
         {
-            int[] dp = new int[arr.Length];
+            Span<int> dp = stackalloc int[arr.Length];
             int capacity = 0;
             for (int i = 0; i < arr.Length; i++)
             {

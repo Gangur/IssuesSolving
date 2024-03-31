@@ -1,10 +1,12 @@
-﻿namespace IssuesSolving.DynamicProgramming
+﻿using IssuesSolving.Matrices.Structure;
+
+namespace IssuesSolving.DynamicProgramming
 {
     public static class CoinChangeProblem
     {
         public static int FindTheMinimumCoinsTabulation(int amount, int[] possibleCoins)
         {
-            var dpMap = new int[amount + 1];
+            Span<int> dpMap = stackalloc int[amount + 1];
             dpMap[0] = 1;
 
             for (int i = 1; i < dpMap.Length; i++)
@@ -21,7 +23,7 @@
                 }
             }
 
-            Console.WriteLine(string.Join(' ', dpMap));
+            dpMap.Print();
             return dpMap[amount] == int.MaxValue ? -1 : dpMap[amount] - 1;
         }
 

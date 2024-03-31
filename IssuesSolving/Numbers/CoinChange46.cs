@@ -36,7 +36,7 @@ namespace IssuesSolving.Numbers
         public static int FindMidDp(int amount, int[] coins) // O(nm)
         {
             int n = amount + 1;
-            int[] dpMap = new int[n];
+            Span<int> dpMap = stackalloc int[n];
             int maxValue = int.MaxValue - amount;
 
 

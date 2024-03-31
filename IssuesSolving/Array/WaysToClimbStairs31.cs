@@ -20,7 +20,7 @@
 
         public static int WaysToClimbDp(int n, int[] possibleSteps) // O(n*m)
         {
-            var dpMap = new int[n + 1];
+            Span<int> dpMap = stackalloc int[n + 1];
             dpMap[0] = 1;
 
             for (int i = 0; i < dpMap.Length; i++)

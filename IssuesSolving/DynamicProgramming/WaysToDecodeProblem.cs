@@ -17,15 +17,16 @@ namespace IssuesSolving.DynamicProgramming
         public static int FindWaysTabulation(string s)
         {
             int n = s.Length;
-            Span<int> dpMap = stackalloc int[n];
 
-            if (s[0] == '0')
+            if (s.Length == 0 || s[0] == '0')
                 return 0;
             else if (s.Length == 1)
                 return 1;
 
+            Span<int> dpMap = stackalloc int[n];
+
             dpMap[0] = 1;
-            dpMap[1] = s[1] != '0' ? 1 : 0 + (firstPlace.Contains(s[0]) && secondPlace.Contains(s[1]) ? 1 : 0);
+            dpMap[1] = (s[1] != '0' ? 1 : 0) + (firstPlace.Contains(s[0]) && secondPlace.Contains(s[1]) ? 1 : 0);
 
             for (int i = 2; i < n; i++) 
             {

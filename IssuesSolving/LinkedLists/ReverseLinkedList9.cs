@@ -6,9 +6,9 @@ namespace IssuesSolving.LinkedLists
     {
         public static LinkedList Reverse(LinkedList list)
         {
-            Node previous = null,
+            Node next,
                 current = list.head,
-                next = null;
+                previous = null;
 
             while (current != null)
             {

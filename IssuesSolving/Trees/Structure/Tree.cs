@@ -50,6 +50,17 @@ namespace IssuesSolving.Trees.Structure
                         new Tree(4))));
         }
 
+        public static Tree CreateTreeForDeathSearch()
+        {
+            return new Tree(1,
+                new Tree(2,
+                    new Tree(4),
+                    new Tree(5)),
+                new Tree(3,
+                    new Tree(6),
+                    new Tree(7)));
+        }
+
         public static Tree CreateOrderdTree()
         {
             return new Tree(1,

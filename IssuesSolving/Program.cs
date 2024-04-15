@@ -9,13 +9,12 @@ using IssuesSolving.Strings;
 using IssuesSolving.Trees;
 using IssuesSolving.Trees.Structure;
 using System.Collections.Generic;
-using static System.Collections.Specialized.BitVector32;
 
 public static class Program
 {
     //var summary = BenchmarkRunner.Run<Benchmark>();
     public static void Main(string[] args)
     {
-        Console.WriteLine(LongestPossiblePalindrome12.Calculate("abdccdceeebebc"));
+        TreeBreadthFirstSearch14.Print(Tree.CreateBinaryTree());
     }
 } 

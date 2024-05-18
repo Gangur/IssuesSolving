@@ -120,6 +120,7 @@ namespace IssuesSolving.Trees.Structure
             {
                 Console.WriteLine(string.Join(' ', level.Value));
             }
+            Console.WriteLine();    
         }
 
         private static Dictionary<int, List<int>> ToDictionary(this Tree tree)

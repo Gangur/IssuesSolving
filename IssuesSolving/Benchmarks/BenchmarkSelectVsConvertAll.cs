@@ -22,7 +22,7 @@ namespace IssuesSolving.Benchmarks
             public int Id { get; set; }
         }
 
-        private class DestanetionDto
+        private class DestinationDto
         {
             public long Id { get; set; }
             public string IdStr { get; set; }
@@ -31,7 +31,7 @@ namespace IssuesSolving.Benchmarks
         [Benchmark]
         public void Select()
         {
-            var result = _list.Select(o => new DestanetionDto()
+            var result = _list.Select(o => new DestinationDto()
             {
                 Id = o.Id,
                 IdStr = o.Id.ToString()
@@ -41,7 +41,7 @@ namespace IssuesSolving.Benchmarks
         [Benchmark]
         public void ConvertAll()
         {
-            var result = _list.ConvertAll(o => new DestanetionDto()
+            var result = _list.ConvertAll(o => new DestinationDto()
             {
                 Id = o.Id,
                 IdStr = o.Id.ToString()

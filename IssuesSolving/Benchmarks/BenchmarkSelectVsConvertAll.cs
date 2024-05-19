@@ -5,15 +5,22 @@ namespace IssuesSolving.Benchmarks
     [MemoryDiagnoser]
     public class BenchmarkSelectVsConvertAll
     {
-        private readonly List<OrigenDto> _list = new List<OrigenDto>(10000);
+        private const int _size = 10000000;
+        private readonly List<OrigenDto> _list = new List<OrigenDto>(_size);
+        private readonly OrigenDto[] _array = new OrigenDto[_size];
+
         public BenchmarkSelectVsConvertAll() 
         {
-            for (int i = 0; i < _list.Count; i++)
+            for (int i = 0; i < _array.Length; i++)
             {
-                _list[i] = new OrigenDto()
+                var entity = new OrigenDto()
                 {
                     Id = i,
                 };
+
+                _list.Add(entity);
+
+                _array[i] = entity;
             }
         }
 
@@ -29,23 +36,34 @@ namespace IssuesSolving.Benchmarks
         }
 
         [Benchmark]
-        public void Select()
+        public void SelectList()
         {
-            var result = _list.Select(o => new DestinationDto()
-            {
-                Id = o.Id,
-                IdStr = o.Id.ToString()
-            }).ToList();
+            var result = _list.Select(MapToDestinationDto).ToList();
         }
 
         [Benchmark]
-        public void ConvertAll()
+        public void ConvertAllList()
         {
-            var result = _list.ConvertAll(o => new DestinationDto()
-            {
-                Id = o.Id,
-                IdStr = o.Id.ToString()
-            });
+            var result = _list.ConvertAll(MapToDestinationDto);
         }
+
+        [Benchmark]
+        public void SelectArray()
+        {
+            var result = _array.Select(MapToDestinationDto).ToArray();
+        }
+
+        [Benchmark]
+        public void ConvertAllArray()
+        {
+            var result = System.Array.ConvertAll(_array, new Converter<OrigenDto, DestinationDto>(MapToDestinationDto));
+        }
+
+        private DestinationDto MapToDestinationDto(OrigenDto origenDto)
+            => new DestinationDto()
+            {
+                Id = origenDto.Id,
+                IdStr = origenDto.Id.ToString()
+            };
     }
 }

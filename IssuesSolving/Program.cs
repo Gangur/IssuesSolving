@@ -8,5 +8,9 @@ public static class Program
     static async Task Main(string[] args)
     {
         var summary = BenchmarkRunner.Run<BenchmarkSelectVsConvertAll>();
+
+        //var BenchmarkSelectVsConvertAll = new BenchmarkSelectVsConvertAll();
+        //
+        //BenchmarkSelectVsConvertAll.ConvertAllArray();
     }
 }

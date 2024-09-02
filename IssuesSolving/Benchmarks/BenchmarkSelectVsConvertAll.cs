@@ -1,13 +1,16 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Linq;
 
 namespace IssuesSolving.Benchmarks
 {
     [MemoryDiagnoser]
     public class BenchmarkSelectVsConvertAll
     {
-        private const int _size = 10000000;
+        private const int _size = 10000;
         private readonly List<OrigenDto> _list = new List<OrigenDto>(_size);
         private readonly OrigenDto[] _array = new OrigenDto[_size];
+
+        private Converter<OrigenDto, DestinationDto> _convertor;
 
         public BenchmarkSelectVsConvertAll() 
         {
@@ -22,6 +25,8 @@ namespace IssuesSolving.Benchmarks
 
                 _array[i] = entity;
             }
+
+            _convertor = new Converter<OrigenDto, DestinationDto>(MapToDestinationDto);
         }
 
         private class OrigenDto
@@ -39,24 +44,32 @@ namespace IssuesSolving.Benchmarks
         public void SelectList()
         {
             var result = _list.Select(MapToDestinationDto).ToList();
+
+            int amount = result.Count;
         }
 
         [Benchmark]
         public void ConvertAllList()
         {
             var result = _list.ConvertAll(MapToDestinationDto);
+
+            int amount = result.Count;
         }
 
         [Benchmark]
         public void SelectArray()
         {
             var result = _array.Select(MapToDestinationDto).ToArray();
+
+            int amount = result.Length;
         }
 
         [Benchmark]
         public void ConvertAllArray()
         {
-            var result = System.Array.ConvertAll(_array, new Converter<OrigenDto, DestinationDto>(MapToDestinationDto));
+            var result = System.Array.ConvertAll(_array, _convertor);
+
+            int amount = result.Length;
         }
 
         private DestinationDto MapToDestinationDto(OrigenDto origenDto)

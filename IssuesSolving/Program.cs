@@ -1,16 +1,19 @@
 ﻿using BenchmarkDotNet.Running;
 using IssuesSolving.Benchmarks;
+using IssuesSolving.LinkedLists.Structure;
+using System.Reflection;
+using System.Text;
 
 public static class Program
 {
-    //var summary = BenchmarkRunner.Run<Benchmark>();
-
-    static async Task Main(string[] args)
+    static void Main(string[] args)
     {
-        var summary = BenchmarkRunner.Run<BenchmarkSelectVsConvertAll>();
+        //var summary = BenchmarkRunner.Run<BenchmarkCapacity>();
 
-        //var BenchmarkSelectVsConvertAll = new BenchmarkSelectVsConvertAll();
-        //
-        //BenchmarkSelectVsConvertAll.ConvertAllArray();
+        var input = "WCWWCWMWWMCCWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMWCMMCCCCCMMM";
+
+        
+
+        Console.WriteLine(result.ToString());
     }
 }
